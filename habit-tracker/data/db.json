@@ -1,0 +1,25 @@
+{
+  "habits": [
+    {
+      "id": 1,
+      "title": "Exercise",
+      "isFav": true
+    },
+    {
+      "id": 2,
+      "title": "Code a bit",
+      "isFav": true
+    },
+    {
+      "id": 4,
+      "title": "Call my aunt",
+      "isFav": false
+    },
+    {
+      "title": "Clean my room",
+      "isFAv": false,
+      "id": 963,
+      "isFav": false
+    }
+  ]
+}

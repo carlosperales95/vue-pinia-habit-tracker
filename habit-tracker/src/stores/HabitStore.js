@@ -2,11 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useHabitStore = defineStore('habitStore', {
     state: () => ({
-        habits: [
-            { id: 1, title: "Exercise", isFav: true },
-            { id: 2, title: "Code a bit", isFav: true },
-            { id: 3, title: "Eat healthy", isFav: false }
-        ],
+        habits: [],
+        isLoading: false,
         name: "Carlito"
     }),
     getters: {
@@ -23,15 +20,51 @@ export const useHabitStore = defineStore('habitStore', {
         }
     },
     actions: {
-        addHabit(habit) {
+        async getHabits() {
+            this.isLoading = true
+            const res = await fetch('http://localhost:3000/habits')
+            const data = await res.json()
+
+            this.habits = data
+            this.isLoading = false
+        },
+        async addHabit(habit) {
             this.habits.push(habit)
+
+            const res= await fetch('http://localhost:3000/habits',{
+                method: 'POST',
+                body: JSON.stringify(habit),
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            if (res.error) {
+                console.log(re.error)
+            }
         },
-        deleteHabit(id) {
+        async deleteHabit(id) {
             this.habits = this.habits.filter(h => h.id !== id)
+
+            const res = await fetch('http://localhost:3000/habits/' + id,{
+                method: 'DELETE',
+            })
+
+            if (res.error) {
+                console.log(re.error)
+            }
         },
-        toggleFav(id) {
+        async toggleFav(id) {
             const habit = this.habits.find( h => h.id === id)
             habit.isFav = !habit.isFav
+
+            const res = await fetch('http://localhost:3000/habits/' + id,{
+                method: 'PATCH',
+                body: JSON.stringify({isFav: habit.isFav}),
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            if (res.error) {
+                console.log(re.error)
+            }
         }
     }
 })

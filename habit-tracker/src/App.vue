@@ -18,6 +18,9 @@
       <button @click="filter = 'favs'">Fav tasks</button>
     </nav>
 
+    <!-- loading -->
+    <div class="loading" v-if="habitStore.isLoading">Loading Habits...</div>
+
     <!-- habit list -->
     <div class="habit-list" v-if="filter === 'all'">
       <p>You have {{ habitStore.totalCount }} habits left unchecked</p>
@@ -34,6 +37,9 @@
       </div>
     </div>
 
+    <!-- Possible Reset state button -->
+    <!-- <button @click="habitStore.$reset">Reset</button> -->
+
   </main>
 </template>
 
@@ -42,11 +48,19 @@ import { useHabitStore } from './stores/HabitStore'
 import HabitDetails from './components/HabitDetails.vue'
 import HabitForm from './components/HabitForm.vue'
 import { ref } from '@vue/reactivity'
+// import { storeToRefs } from 'pinia'
 
   export default {
     components: { HabitDetails, HabitForm },
     setup() {
       const habitStore = useHabitStore()
+
+      // These refs can replace the habitStore return, and take one level out habitStore.habits => habits
+      // Cannot use actions tho
+      // const { habits, isLoading, favs, totalCount, favCount } = storeToRefs(habitStore)
+
+      // fetch habits
+      habitStore.getHabits()
 
       const filter = ref('all')
 
