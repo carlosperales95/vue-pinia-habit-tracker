@@ -3,23 +3,44 @@
     {
       "id": 1,
       "title": "Exercise",
-      "isFav": true
+      "isFav": true,
+      "lastCompleted": "2022-12-26T11:08:09.162Z"
     },
     {
       "id": 2,
       "title": "Code a bit",
-      "isFav": true
-    },
-    {
-      "id": 4,
-      "title": "Call my aunt",
-      "isFav": false
+      "isFav": true,
+      "lastCompleted": "2022-12-26T11:07:56.717Z"
     },
     {
       "title": "Clean my room",
       "isFAv": false,
       "id": 963,
-      "isFav": false
+      "isFav": false,
+      "lastCompleted": "2018-12-10T13:49:51.141Z"
+    },
+    {
+      "title": "Edit some photos",
+      "isFAv": false,
+      "id": 852,
+      "isFav": true
+    },
+    {
+      "title": "Practice guitar",
+      "isFAv": false,
+      "id": 901,
+      "isFav": true
+    },
+    {
+      "title": "Prepare HackerRank",
+      "isFAv": false,
+      "id": 190
+    },
+    {
+      "title": "Stream",
+      "isFAv": false,
+      "id": 602,
+      "isFav": true
     }
   ]
 }

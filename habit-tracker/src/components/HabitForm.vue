@@ -21,10 +21,10 @@ import { useHabitStore } from '../stores/HabitStore'
                 if (newHabit.value.length > 0) {
                     habitStore.addHabit({
                         title: newHabit.value,
-                        isFAv: false,
+                        isFav: false,
                         id: Math.floor(Math.random() * 1000)
                     })
-                    newHabit.value =''
+                    newHabit.value = ''
                 }
             }
             return { handleSubmit, newHabit }

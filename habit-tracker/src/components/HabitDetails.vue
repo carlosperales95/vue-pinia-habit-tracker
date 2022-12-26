@@ -1,6 +1,11 @@
 <template>
-    <div class="habit">
-        <h3> {{ habit.title }} </h3>
+    <div 
+        class="habit" 
+        :class="{checked: now - new Date(habit.lastCompleted) <= 86400000 && habit.lastCompleted !== null}"
+    >
+        <h3> 
+            {{ habit.title }} 
+        </h3>
         <div class="icons">
             <i 
               class="material-icons"
@@ -15,6 +20,12 @@
             > 
               favorite 
             </i>
+            <i 
+              class="material-icons check"
+              @click="habitStore.completeHabit(habit.id)"
+            > 
+              check 
+            </i>
         </div>
     </div>
 </template>
@@ -26,8 +37,9 @@ import { useHabitStore } from '../stores/HabitStore'
         setup() {
             const habitStore = useHabitStore()
 
+            let now = new Date()
 
-            return { habitStore }
+            return { habitStore, now }
         }
     }
 </script>

@@ -14,8 +14,18 @@
 
     <!-- filter nav -->
     <nav class="filter">
-      <button @click="filter = 'all'">All tasks</button>
-      <button @click="filter = 'favs'">Fav tasks</button>
+      <button 
+        @click="filter = 'all'"
+        :class="{selected: filter === 'all'}"
+      >
+        All
+      </button>
+      <button 
+        @click="filter = 'favs'"
+        :class="{selected: filter === 'favs'}"
+      >
+        Favs
+      </button>
     </nav>
 
     <!-- loading -->
@@ -23,7 +33,7 @@
 
     <!-- habit list -->
     <div class="habit-list" v-if="filter === 'all'">
-      <p>You have {{ habitStore.totalCount }} habits left unchecked</p>
+      <p><b>All:</b> You have {{ habitStore.totalCount }} habits left unchecked today</p>
       <div v-for="habit in habitStore.habits" :key="habit.id">
         <HabitDetails :habit="habit" />
       </div>
@@ -31,7 +41,7 @@
 
     <!-- favs list -->
     <div class="habit-list" v-if="filter === 'favs'">
-      <p>You have {{ habitStore.favCount }} favs left unchecked</p>
+      <p><b>Favs:</b> You have {{ habitStore.favCount }} fav habits left unchecked today</p>
       <div v-for="habit in habitStore.favs" :key="habit.id">
         <HabitDetails :habit="habit" />
       </div>
